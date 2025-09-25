@@ -1,0 +1,12 @@
+__pycache__
+*.pth
+.*nfs*
+*.pt
+*.log
+*.ckpt
+*.csv
+*.tar
+*.gz
+*.zip
+*.idea
+.vscode 
