@@ -9,4 +9,5 @@ __pycache__
 *.gz
 *.zip
 *.idea
-.vscode 
+.vscode
+model_weights
