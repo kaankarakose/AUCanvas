@@ -5,7 +5,7 @@ import os
 import sys
 import platform
 from dataclasses import dataclass
-
+from typing import Union # for Python <3.10 compatibility
 import numpy as np
 import cv2
 import onnxruntime as ort
@@ -40,7 +40,7 @@ def _prefer_providers(force_cpu: bool) -> list:
     return filtered or ["CPUExecutionProvider"]
 
 
-def _session_options(num_threads: int | None = None) -> ort.SessionOptions:
+def _session_options(num_threads: Union[int, None] = None) -> ort.SessionOptions:
     so = ort.SessionOptions()
     # Full graph fusion/constant folding
     so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
@@ -67,7 +67,7 @@ class ORTModel:
     W: int
 
     @staticmethod
-    def create(path: str, force_cpu: bool = False, num_threads: int | None = None) -> "ORTModel":
+    def create(path: str, force_cpu: bool = False, num_threads: Union[int, None] = None) -> "ORTModel":
         # Tip: If you ever want heavy validation, enable the checker once offline.
         # from onnx import load, checker; checker.check_model(load(path))
 
